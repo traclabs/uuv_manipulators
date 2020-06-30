@@ -65,8 +65,12 @@ class ArmInterface(KinChainInterface):
 
         self._man_index = 0.0
 
-        assert rospy.has_param(param_path + '/base_link'), 'Base link name not available in the namespace ' + namespace
-        assert rospy.has_param(param_path + '/tip_link'), 'Tip link name not available in the namespace ' + namespace
+        bl_param = param_path + '/base_link'
+        assert_msg = "Base link name not available in the namespace <%s>.  Does not have parameter <%s>."%(namespace, bl_param)
+        assert rospy.has_param(bl_param), assert_msg
+        tl_param = param_path + '/tip_link'
+        assert_msg = "Base link name not available in the namespace <%s>.  Does not have parameter <%s>."%(namespace, tl_param)
+        assert rospy.has_param(tl_param), assert_mgs
 
         #  Retrieve the names of the base and tip links
         base_link = rospy.get_param(param_path + '/base_link')
