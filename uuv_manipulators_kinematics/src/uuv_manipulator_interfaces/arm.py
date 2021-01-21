@@ -232,7 +232,7 @@ class ArmInterface(KinChainInterface):
 
     def add_callback(self, topic_name, function_handle):
         if topic_name not in self._subTopics:
-            print 'ArmInterface - Invalid topic name'
+            print('ArmInterface - Invalid topic name')
             return
 
         if topic_name not in self._callbacks:
