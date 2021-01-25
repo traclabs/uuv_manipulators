@@ -93,7 +93,7 @@ class KinChainInterface(object):
         # Get joint names from the chain
         # Joint names
         self._joint_names = list()
-        for idx in xrange(self._chain.getNrOfSegments()):
+        for idx in range(self._chain.getNrOfSegments()):
             joint = self._chain.getSegment(idx).getJoint()
             # Not considering fixed joints
             if joint.getType() == 0:
@@ -179,7 +179,7 @@ class KinChainInterface(object):
     def link_names(self):
         """Link names."""
         names = list()
-        for idx in xrange(self._chain.getNrOfSegments()):
+        for idx in range(self._chain.getNrOfSegments()):
             names.append(self._chain.getSegment(idx).getName())
         return names
 
@@ -240,7 +240,7 @@ class KinChainInterface(object):
 
     def print_chain(self):
         print('Number of segments in chain={:d}'.format(self._chain.getNrOfSegments()))
-        for idx in xrange(self._chain.getNrOfSegments()):
+        for idx in range(self._chain.getNrOfSegments()):
             print('* ' + self._chain.getSegment(idx).getName())
 
     def get_joint_angle(self, joint):
