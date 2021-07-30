@@ -22,7 +22,7 @@ from uuv_manipulators_msgs.msg import EndeffectorState
 from std_msgs.msg import Float64
 from sensor_msgs.msg import JointState
 import time
-
+from __future__ import division
 
 class GripperInterface(object):
     TYPE = ['no_gripper', 'parallel', 'jaw']
@@ -316,7 +316,7 @@ class GripperInterface(object):
                 return self._groups[group].joint_names
 
     def get_group_names(self):
-        return self._groups.keys()
+        return list(self._groups.keys())
 
     def set_state(self, state):
         for gripper_state in GripperState:
