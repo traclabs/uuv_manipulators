@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright (c) 2016 The UUV Simulator Authors.
 # All rights reserved.
 #
@@ -41,7 +41,7 @@ class TestArmInterface(unittest.TestCase):
 
     def test_joints_to_kdl(self):
         arm = ArmInterface()
-        for idx, name in zip(range(len(arm.joint_names)), arm.joint_names):
+        for idx, name in enumerate(arm.joint_names):
             for t in ['positions', 'torques']:
                 jnt_array = arm.joints_to_kdl(t, last_joint=name)
                 self.assertEquals(jnt_array.rows(), idx + 1,
@@ -53,7 +53,7 @@ class TestArmInterface(unittest.TestCase):
         self.assertIsNotNone(jac, 'Jacobian matrix is invalid')
         self.assertEquals(jac.shape, (arm.n_links, 6), 'The full Jacobian matrix has the wrong size')
 
-        for idx, name in zip(range(len(arm.link_names)), arm.link_names):
+        for idx, name in enumerate(arm.link_names):
             self.assertEquals(arm.jacobian(end_link=name).shape, (arm.n_links, 6))
             self.assertEquals(arm.jacobian_transpose(end_link=name).shape, (6, arm.n_links))
 
