@@ -39,63 +39,63 @@
       output="screen"/>
 
     <!-- Starting direct joint position control node -->
-    <node name="joint_position_controller_$(arg arm_name)" pkg="uuv_manipulators_control" type="joint_position_controller.py"
-      output="screen">
-      <remap from="joy" to="/$(arg uuv_name)/joy"/>
-      <rosparam subst_value="true">
-        exclusion_buttons: $(arg exclusion_button)
-        deadman_button: $(arg deadman_button)
-        home_button: $(arg home_button)
-        controller_config:
-          azimuth:
-            joint_input_axis: $(arg axis_azimuth)
-            axis_gain: 0.01
-            topic: /$(arg uuv_name)/$(arg arm_name)/azimuth/controller/command
-            controller:
-              p: 1000
-              i: 20
-              d: 50
-          shoulder:
-            joint_input_axis: $(arg axis_shoulder)
-            axis_gain: 0.01
-            topic: /$(arg uuv_name)/$(arg arm_name)/shoulder/controller/command
-            controller:
-              p: 1000
-              i: 20
-              d: 50
-          elbow:
-            joint_input_axis: $(arg axis_elbow)
-            axis_gain: 0.01
-            topic: /$(arg uuv_name)/$(arg arm_name)/elbow/controller/command
-            controller:
-              p: 1000
-              i: 20
-              d: 50
-          roll:
-            joint_input_axis: $(arg axis_roll)
-            axis_gain: 0.01
-            topic: /$(arg uuv_name)/$(arg arm_name)/roll/controller/command
-            controller:
-              p: 300
-              i: 10
-              d: 20
-          pitch:
-            joint_input_axis: $(arg axis_pitch)
-            axis_gain: 0.1
-            topic: /$(arg uuv_name)/$(arg arm_name)/pitch/controller/command
-            controller:
-              p: 300
-              i: 10
-              d: 0
-          wrist:
-            joint_input_axis: $(arg axis_yaw)
-            axis_gain: 0.01
-            topic: /$(arg uuv_name)/$(arg arm_name)/wrist/controller/command
-            controller:
-              p: 200
-              i: 10
-              d: 0
-      </rosparam>
-    </node>
+    <!-- <node name="joint_position_controller_$(arg arm_name)" pkg="uuv_manipulators_control" type="joint_position_controller.py" -->
+      <!-- output="screen"> -->
+      <!-- <remap from="joy" to="/$(arg uuv_name)/joy"/> -->
+      <!-- <rosparam subst_value="true"> -->
+        <!-- exclusion_buttons: $(arg exclusion_button) -->
+        <!-- deadman_button: $(arg deadman_button) -->
+        <!-- home_button: $(arg home_button) -->
+        <!-- controller_config: -->
+          <!-- azimuth: -->
+            <!-- joint_input_axis: $(arg axis_azimuth) -->
+            <!-- axis_gain: 0.01 -->
+            <!-- topic: /$(arg uuv_name)/$(arg arm_name)/azimuth/controller/command -->
+            <!-- controller: -->
+              <!-- p: 1000 -->
+              <!-- i: 20 -->
+              <!-- d: 50 -->
+          <!-- shoulder: -->
+            <!-- joint_input_axis: $(arg axis_shoulder) -->
+            <!-- axis_gain: 0.01 -->
+            <!-- topic: /$(arg uuv_name)/$(arg arm_name)/shoulder/controller/command -->
+            <!-- controller: -->
+            <!-- p: 1000 -->
+              <!-- i: 20 -->
+              <!-- d: 50 -->
+          <!-- elbow: -->
+            <!-- joint_input_axis: $(arg axis_elbow) -->
+            <!-- axis_gain: 0.01 -->
+            <!-- topic: /$(arg uuv_name)/$(arg arm_name)/elbow/controller/command -->
+            <!-- controller: -->
+              <!-- p: 1000 -->
+              <!-- i: 20 -->
+              <!-- d: 50 -->
+          <!-- roll: -->
+            <!-- joint_input_axis: $(arg axis_roll) -->
+            <!-- axis_gain: 0.01 -->
+            <!-- topic: /$(arg uuv_name)/$(arg arm_name)/roll/controller/command -->
+            <!-- controller: -->
+              <!-- p: 300 -->
+              <!-- i: 10 -->
+              <!-- d: 20 -->
+          <!-- pitch: -->
+            <!-- joint_input_axis: $(arg axis_pitch) -->
+            <!-- axis_gain: 0.1 -->
+            <!-- topic: /$(arg uuv_name)/$(arg arm_name)/pitch/controller/command -->
+            <!-- controller: -->
+              <!-- p: 300 -->
+              <!-- i: 10 -->
+              <!-- d: 0 -->
+          <!-- wrist: -->
+            <!-- joint_input_axis: $(arg axis_yaw) -->
+            <!-- axis_gain: 0.01 -->
+            <!-- topic: /$(arg uuv_name)/$(arg arm_name)/wrist/controller/command -->
+            <!-- controller: -->
+              <!-- p: 200 -->
+              <!-- i: 10 -->
+              <!-- d: 0 -->
+      <!-- </rosparam> -->
+    <!-- </node> -->
   </group>
 </launch>
