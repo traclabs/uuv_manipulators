@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from __future__ import division
 
 import rospy
 
@@ -22,7 +23,6 @@ from uuv_manipulators_msgs.msg import EndeffectorState
 from std_msgs.msg import Float64
 from sensor_msgs.msg import JointState
 import time
-from __future__ import division
 
 class GripperInterface(object):
     TYPE = ['no_gripper', 'parallel', 'jaw']
