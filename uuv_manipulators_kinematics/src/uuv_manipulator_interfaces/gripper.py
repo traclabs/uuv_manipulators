@@ -16,7 +16,6 @@
 
 # See PEP 238
 from __future__ import division
-
 import rospy
 
 import numpy as np
