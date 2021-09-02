@@ -132,7 +132,7 @@ class JointPositionController:
                         # Check for the joint limits
                         self._reference_pos[joint] = self._check_joint_limits(self._reference_pos[joint], joint)
                 self._last_joy_update = rospy.get_time()
-        except e:
+        except Exception as e:
             print('Error during joy parsing, message=', e)
 
 if __name__ == '__main__':
