@@ -24,10 +24,6 @@ from uuv_manipulators_msgs.msg import EndeffectorState
 from std_msgs.msg import Float64
 from sensor_msgs.msg import JointState
 import time
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 class GripperInterface(object):
     TYPE = ['no_gripper', 'parallel', 'jaw']
