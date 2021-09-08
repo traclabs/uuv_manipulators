@@ -35,8 +35,8 @@
               - $(arg arm_name)/finger_left_joint
               - $(arg arm_name)/finger_right_joint
           gains:
-            $(arg arm_name)/finger_left_joint: {p: 50.0, i: 0, d: 0, i_clamp: 100.0}
-            $(arg arm_name)/finger_right_joint: {p: 50.0, d: 0, i: 0, i_clamp: 100.0}
+            $(arg arm_name)/finger_left_joint: {p: 500.0, i: 100, d: 0, i_clamp: 1000.0}
+            $(arg arm_name)/finger_right_joint: {p: 500.0, i: 100, d: 0, i_clamp: 1000.0}
 
             constraints:
               goal_time: 10.0
