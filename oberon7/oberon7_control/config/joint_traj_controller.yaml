@@ -1,0 +1,45 @@
+# this is the standard controller that was set up for the RUM + CRAFTSMAN project
+# removes the argument tags that were used in the original "oberon7_control/launch/joint_effort_controlllers.launch"
+# in favor of static "rexrov" and "oberon7" parameters, so that this can be a separate launch file
+rexrov:
+  oberon7:
+    arm_controller:
+      type: "effort_controllers/JointTrajectoryController"
+      joints:
+        - oberon7/azimuth
+        - oberon7/shoulder
+        - oberon7/elbow
+        - oberon7/roll
+        - oberon7/pitch
+        - oberon7/wrist
+      gains:
+        oberon7/azimuth: {p: 2000, i: 100, d: 50}
+        oberon7/shoulder: {p: 2000, i: 100, d: 50}
+        oberon7/elbow: {p: 2000, i: 100, d: 50}
+        oberon7/roll: {p: 1000, i: 50, d: 10}
+        oberon7/pitch: {p: 1000, i: 50, d: 10}
+        oberon7/wrist: {p: 500, i: 30, d: 10}
+      follow_joint_trajectory:
+        joints:
+          - oberon7/azimuth
+          - oberon7/shoulder
+          - oberon7/elbow
+          - oberon7/roll
+          - oberon7/pitch
+          - oberon7/wrist
+        constraints:
+          goal_time: 10.0
+          oberon7/azimuth:
+            goal: 0.1
+          oberon7/shoulder:
+            goal: 0.1
+          oberon7/elbow:
+            goal: 0.1
+          oberon7/roll:
+            goal: 0.1
+          oberon7/pitch:
+            goal: 0.1
+          oberon7/wrist:
+            goal: 0.1
+        action_monitor_rate: 30            # Override default
+        stop_trajectory_duration: 0        # Override default

@@ -37,7 +37,7 @@
             <!-- pid: {p: 500, i: 30, d: 10} -->
   <!-- </rosparam> -->
 
-  <rosparam subst_value="true">
+  <!-- <rosparam subst_value="true">
     $(arg uuv_name):
       $(arg arm_name):
         arm_controller:
@@ -81,7 +81,21 @@
             action_monitor_rate: 30            # Override default
             stop_trajectory_duration: 0        # Override default
 
-  </rosparam>
+  </rosparam> -->
+  <!-- Replaces the above commented block with a standalone yaml -->
+  <!-- <rosparam command="load" file="$(find oberon7_control)/config/joint_traj_controller.yaml"/> -->
+  <rosparam command="load" file="$(find oberon7_control)/config/joint_group_pos_effort_controller.yaml"/>
+  <rosparam command="load" file="$(find oberon7_control)/config/joint_traj_effort_controller.yaml"/>
+
+  <!-- <group ns="$(arg uuv_name)">
+    <node name="controller_spawner"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          ns="tracarm"
+          output="screen"
+          args="arm_trajectory_controller joint_state_controller"/>
+  </group> -->
 
   <group ns="$(arg uuv_name)">
     <!-- load the controllers -->
@@ -91,7 +105,8 @@
           respawn="false"
           output="screen"
           ns="/$(arg uuv_name)"
-          args="/$(arg uuv_name)/$(arg arm_name)/arm_controller"/>
+          args="arm_trajectory_controller"/>
+          <!-- args="/$(arg uuv_name)/$(arg arm_name)/arm_controller"/> -->
 
   </group>
 </launch>
