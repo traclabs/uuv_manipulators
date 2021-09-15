@@ -3,7 +3,7 @@
 # in favor of static "rexrov" and "oberon7" parameters, so that this can be a separate launch file
 rexrov:
   arm_position_controller:
-    type: "effort_controllers/JointGroupPositionController"
+    type: "position_controllers/JointGroupPositionController"
     joints:
       - oberon7/azimuth
       - oberon7/shoulder
