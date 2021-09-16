@@ -3,7 +3,7 @@
 # in favor of static "rexrov" and "oberon7" parameters, so that this can be a separate launch file
 rexrov:
   arm_trajectory_controller:
-    type: "position_controllers/JointTrajectoryController"
+    type: "effort_controllers/JointTrajectoryController"
     joints:
       - oberon7/azimuth
       - oberon7/shoulder
@@ -42,3 +42,26 @@ rexrov:
           goal: 0.1
       action_monitor_rate: 30            # Override default
       stop_trajectory_duration: 0        # Override default
+rexrov:
+  arm_position_controller:
+    type: "position_controllers/JointGroupPositionController"
+    joints:
+      - oberon7/azimuth
+      - oberon7/shoulder
+      - oberon7/elbow
+      - oberon7/roll
+      - oberon7/pitch
+      - oberon7/wrist
+    oberon7:
+      azimuth:
+        pid: {p: 2000, i: 100, d: 50}
+      shoulder:
+        pid: {p: 2000, i: 100, d: 50}
+      elbow:
+        pid: {p: 2000, i: 100, d: 50}
+      roll:
+        pid: {p: 1000, i: 50, d: 10}
+      pitch:
+        pid: {p: 1000, i: 50, d: 10}
+      wrist:
+        pid: {p: 500, i: 30, d: 10}
