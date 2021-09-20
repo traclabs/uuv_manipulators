@@ -42,9 +42,9 @@ rexrov:
           goal: 0.1
       action_monitor_rate: 30            # Override default
       stop_trajectory_duration: 0        # Override default
-rexrov:
+      
   arm_position_controller:
-    type: "position_controllers/JointGroupPositionController"
+    type: "effort_controllers/JointGroupPositionController"
     joints:
       - oberon7/azimuth
       - oberon7/shoulder
