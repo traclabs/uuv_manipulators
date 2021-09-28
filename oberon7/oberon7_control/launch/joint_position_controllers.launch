@@ -3,10 +3,10 @@
   <arg name="arm_name" default="oberon7"/>
 
   <!-- Load controller parameters -->
-  <rosparam command="load" file="$(find oberon7_control)/config/joint_traj_effort_controller.yaml"/>
+  <rosparam command="load" file="$(find oberon7_control)/config/joint_traj_pos_controller.yaml"/>
 
+  <!-- load the controllers -->
   <group ns="$(arg uuv_name)">
-    <!-- load the controllers -->
     <node name="controller_spawner_$(arg arm_name)"
           pkg="controller_manager"
           type="spawner"

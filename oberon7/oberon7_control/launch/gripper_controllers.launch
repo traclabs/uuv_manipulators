@@ -26,7 +26,7 @@
     $(arg uuv_name):
       $(arg arm_name):
         gripper:
-          type: "effort_controllers/JointTrajectoryController"
+          type: "position_controllers/JointTrajectoryController"
           joints:
             - $(arg arm_name)/finger_left_joint
             - $(arg arm_name)/finger_right_joint
