@@ -2,100 +2,8 @@
   <arg name="uuv_name" />
   <arg name="arm_name" default="oberon7"/>
 
-  <!-- <rosparam subst_value="true"> -->
-    <!-- $(arg uuv_name): -->
-      <!-- $(arg arm_name): -->
-        <!-- azimuth: -->
-          <!-- controller: -->
-            <!-- type: effort_controllers/JointEffortController -->
-            <!-- joint: $(arg arm_name)/azimuth -->
-            <!-- pid: {p: 2000, i: 100, d: 50} -->
-        <!-- shoulder: -->
-          <!-- controller: -->
-            <!-- type: effort_controllers/JointEffortController -->
-            <!-- joint: $(arg arm_name)/shoulder -->
-            <!-- pid: {p: 2000, i: 100, d: 50} -->
-        <!-- elbow: -->
-          <!-- controller: -->
-            <!-- type: effort_controllers/JointEffortController -->
-            <!-- joint: $(arg arm_name)/elbow -->
-            <!-- pid: {p: 2000, i: 100, d: 50} -->
-          <!-- roll: -->
-          <!-- controller: -->
-            <!-- type: effort_controllers/JointEffortController -->
-            <!-- joint: $(arg arm_name)/roll -->
-            <!-- pid: {p: 1000, i: 50, d: 10} -->
-        <!-- pitch: -->
-          <!-- controller: -->
-            <!-- type: effort_controllers/JointEffortController -->
-            <!-- joint: $(arg arm_name)/pitch -->
-            <!-- pid: {p: 1000, i: 50, d: 10} -->
-        <!-- wrist: -->
-          <!-- controller: -->
-          <!-- type: effort_controllers/JointEffortController -->
-            <!-- joint: $(arg arm_name)/wrist -->
-            <!-- pid: {p: 500, i: 30, d: 10} -->
-  <!-- </rosparam> -->
-
-  <!-- <rosparam subst_value="true">
-    $(arg uuv_name):
-      $(arg arm_name):
-        arm_controller:
-          type: "effort_controllers/JointTrajectoryController"
-          joints:
-            - $(arg arm_name)/azimuth
-            - $(arg arm_name)/shoulder
-            - $(arg arm_name)/elbow
-            - $(arg arm_name)/roll
-            - $(arg arm_name)/pitch
-            - $(arg arm_name)/wrist
-          gains:
-            $(arg arm_name)/azimuth: {p: 2000, i: 100, d: 50}
-            $(arg arm_name)/shoulder: {p: 2000, i: 100, d: 50}
-            $(arg arm_name)/elbow: {p: 2000, i: 100, d: 50}
-            $(arg arm_name)/roll: {p: 1000, i: 50, d: 10}
-            $(arg arm_name)/pitch: {p: 1000, i: 50, d: 10}
-            $(arg arm_name)/wrist: {p: 500, i: 30, d: 10}
-          follow_joint_trajectory:
-            joints:
-              - $(arg arm_name)/azimuth
-              - $(arg arm_name)/shoulder
-              - $(arg arm_name)/elbow
-              - $(arg arm_name)/roll
-              - $(arg arm_name)/pitch
-              - $(arg arm_name)/wrist
-            constraints:
-              goal_time: 10.0
-              $(arg arm_name)/azimuth:
-                goal: 0.1
-              $(arg arm_name)/shoulder:
-                goal: 0.1
-              $(arg arm_name)/elbow:
-                goal: 0.1
-              $(arg arm_name)/roll:
-                goal: 0.1
-              $(arg arm_name)/pitch:
-                goal: 0.1
-              $(arg arm_name)/wrist:
-                goal: 0.1
-            action_monitor_rate: 30            # Override default
-            stop_trajectory_duration: 0        # Override default
-
-  </rosparam> -->
-  <!-- Replaces the above commented block with a standalone yaml -->
-  <!-- <rosparam command="load" file="$(find oberon7_control)/config/joint_traj_controller.yaml"/> -->
-  <!-- <rosparam command="load" file="$(find oberon7_control)/config/joint_group_pos_controller.yaml"/> -->
+  <!-- Load controller parameters -->
   <rosparam command="load" file="$(find oberon7_control)/config/joint_traj_effort_controller.yaml"/>
-
-  <!-- <group ns="$(arg uuv_name)">
-    <node name="controller_spawner"
-          pkg="controller_manager"
-          type="spawner"
-          respawn="false"
-          ns="tracarm"
-          output="screen"
-          args="arm_trajectory_controller joint_state_controller"/>
-  </group> -->
 
   <group ns="$(arg uuv_name)">
     <!-- load the controllers -->
@@ -106,9 +14,5 @@
           output="screen"
           ns="/$(arg uuv_name)"
           args="arm_trajectory_controller"/>
-          <!-- args="/$(arg uuv_name)/$(arg arm_name)/arm_controller"/> -->
-
   </group>
 </launch>
-
-<!-- /$(arg uuv_name)/$(arg arm_name)/arm_position_controller -->
