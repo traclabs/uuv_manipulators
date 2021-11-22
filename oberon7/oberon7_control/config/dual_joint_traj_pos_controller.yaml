@@ -1,0 +1,106 @@
+# this is the standard controller that was set up for the RUM + CRAFTSMAN project
+# removes the argument tags that were used in the original "oberon7_control/launch/joint_effort_controlllers.launch"
+# in favor of static "rexrov" and "oberon7" parameters, so that this can be a separate launch file
+
+rexrov:
+  left arm_trajectory_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - oberon7/left/azimuth
+      - oberon7/left/shoulder
+      - oberon7/left/elbow
+      - oberon7/left/roll
+      - oberon7/left/pitch
+      - oberon7/left/wrist
+    gains:
+      oberon7/left/azimuth: {p: 2000, i: 100, d: 50}
+      oberon7/left/shoulder: {p: 2000, i: 100, d: 50}
+      oberon7/left/elbow: {p: 2000, i: 100, d: 50}
+      oberon7/left/roll: {p: 1000, i: 50, d: 10}
+      oberon7/left/pitch: {p: 1000, i: 50, d: 10}
+      oberon7/left/wrist: {p: 500, i: 30, d: 10}
+    follow_joint_trajectory:
+      joints:
+        - oberon7/left/azimuth
+        - oberon7/left/shoulder
+        - oberon7/left/elbow
+        - oberon7/left/roll
+        - oberon7/left/pitch
+        - oberon7/left/wrist
+      constraints:
+        goal_time: 10.0
+        oberon7/left/azimuth:
+          goal: 0.1
+        oberon7/left/shoulder:
+          goal: 0.1
+        oberon7/left/elbow:
+          goal: 0.1
+        oberon7/left/roll:
+          goal: 0.1
+        oberon7/left/pitch:
+          goal: 0.1
+        oberon7/left/wrist:
+          goal: 0.1
+      action_monitor_rate: 30            # Override default
+      stop_trajectory_duration: 0        # Override default
+
+  left_arm_position_controller:
+    type: "position_controllers/JointGroupPositionController"
+    joints:
+      - oberon7/left/azimuth
+      - oberon7/left/shoulder
+      - oberon7/left/elbow
+      - oberon7/left/roll
+      - oberon7/left/pitch
+      - oberon7/left/wrist
+
+  right arm_trajectory_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - oberon7/right/azimuth
+      - oberon7/right/shoulder
+      - oberon7/right/elbow
+      - oberon7/right/roll
+      - oberon7/right/pitch
+      - oberon7/right/wrist
+    gains:
+      oberon7/right/azimuth: {p: 2000, i: 100, d: 50}
+      oberon7/right/shoulder: {p: 2000, i: 100, d: 50}
+      oberon7/right/elbow: {p: 2000, i: 100, d: 50}
+      oberon7/right/roll: {p: 1000, i: 50, d: 10}
+      oberon7/right/pitch: {p: 1000, i: 50, d: 10}
+      oberon7/right/wrist: {p: 500, i: 30, d: 10}
+    follow_joint_trajectory:
+      joints:
+        - oberon7/right/azimuth
+        - oberon7/right/shoulder
+        - oberon7/right/elbow
+        - oberon7/right/roll
+        - oberon7/right/pitch
+        - oberon7/right/wrist
+      constraints:
+        goal_time: 10.0
+        oberon7/right/azimuth:
+          goal: 0.1
+        oberon7/right/shoulder:
+          goal: 0.1
+        oberon7/right/elbow:
+          goal: 0.1
+        oberon7/right/roll:
+          goal: 0.1
+        oberon7/right/pitch:
+          goal: 0.1
+        oberon7/right/wrist:
+          goal: 0.1
+      action_monitor_rate: 30            # Override default
+      stop_trajectory_duration: 0        # Override default
+
+  right_arm_position_controller:
+    type: "position_controllers/JointGroupPositionController"
+    joints:
+      - oberon7/right/azimuth
+      - oberon7/right/shoulder
+      - oberon7/right/elbow
+      - oberon7/right/roll
+      - oberon7/right/pitch
+      - oberon7/right/wrist

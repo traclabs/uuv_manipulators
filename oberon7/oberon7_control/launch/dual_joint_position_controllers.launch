@@ -1,0 +1,18 @@
+<launch>
+  <arg name="uuv_name" />
+  <arg name="arm_name" default="oberon7"/>
+
+  <!-- Load controller parameters -->
+  <rosparam command="load" file="$(find oberon7_control)/config/dual_joint_traj_pos_controller.yaml"/>
+
+  <!-- load the controllers -->
+  <group ns="$(arg uuv_name)">
+    <node name="controller_spawner_$(arg arm_name)"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          output="screen"
+          ns="/$(arg uuv_name)"
+          args="left_arm_trajectory_controller right_arm_trajectory_controller"/>
+  </group>
+</launch>
