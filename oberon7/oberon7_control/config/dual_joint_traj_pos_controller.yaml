@@ -3,7 +3,7 @@
 # in favor of static "rexrov" and "oberon7" parameters, so that this can be a separate launch file
 
 rexrov:
-  left arm_trajectory_controller:
+  left_arm_trajectory_controller:
     type: "position_controllers/JointTrajectoryController"
     joints:
       - oberon7/left/azimuth
@@ -54,7 +54,7 @@ rexrov:
       - oberon7/left/pitch
       - oberon7/left/wrist
 
-  right arm_trajectory_controller:
+  right_arm_trajectory_controller:
     type: "position_controllers/JointTrajectoryController"
     joints:
       - oberon7/right/azimuth
