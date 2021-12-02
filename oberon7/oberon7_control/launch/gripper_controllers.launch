@@ -22,7 +22,7 @@
             <!-- pid: {p: 50.0, i: 0, d: 0} -->
   <!-- </rosparam> -->
 
-  <rosparam subst_value="true">
+  <!-- <rosparam subst_value="true">
     $(arg uuv_name):
       $(arg arm_name):
         gripper:
@@ -46,6 +46,16 @@
                 goal: 0.2
             action_monitor_rate: 30            # Override default
             stop_trajectory_duration: 0        # Override default
+  </rosparam> -->
+
+  <rosparam subst_value="true">
+    $(arg uuv_name):
+      $(arg arm_name):
+        gripper:
+          type: "position_controllers/JointGroupPositionController"
+          joints:
+            - $(arg arm_name)/finger_left_joint
+            - $(arg arm_name)/finger_right_joint
   </rosparam>
 
   <group ns="$(arg uuv_name)">
