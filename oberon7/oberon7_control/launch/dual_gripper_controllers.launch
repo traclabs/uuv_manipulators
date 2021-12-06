@@ -1,0 +1,73 @@
+<launch>
+  <arg name="uuv_name" />
+  <arg name="arm_name" default="oberon7"/>
+  <arg name="left_arm_name" default="oberon7/left"/>
+  <arg name="right_arm_name" default="oberon7/right"/>
+  <!-- Default joystick mapping set for the XBox 360 controller -->
+  <arg name="deadman_button" default="5"/>
+  <arg name="exclusion_button" default="4"/>
+  <arg name="open_button" default="1"/>
+  <arg name="close_button" default="2"/>
+
+
+  <rosparam subst_value="true">
+    $(arg uuv_name):
+      $(arg left_arm_name):
+        gripper:
+          type: "position_controllers/JointTrajectoryController"
+          joints:
+            - $(arg left_arm_name)/finger_left_joint
+            - $(arg left_arm_name)/finger_right_joint
+          follow_joint_trajectory:
+            joints:
+              - $(arg left_arm_name)/finger_left_joint
+              - $(arg left_arm_name)/finger_right_joint
+          gains:
+            $(arg left_arm_name)/finger_left_joint: {p: 500.0, i: 100, d: 0, i_clamp: 1000.0}
+            $(arg left_arm_name)/finger_right_joint: {p: 500.0, i: 100, d: 0, i_clamp: 1000.0}
+
+            constraints:
+              goal_time: 10.0
+              $(arg left_arm_name)/finger_left_joint:
+                goal: 0.2
+              $(arg left_arm_name)/finger_right_joint:
+                goal: 0.2
+            action_monitor_rate: 30            # Override default
+            stop_trajectory_duration: 0        # Override default
+      $(arg right_arm_name):
+        gripper:
+          type: "position_controllers/JointTrajectoryController"
+          joints:
+            - $(arg right_arm_name)/finger_left_joint
+            - $(arg right_arm_name)/finger_right_joint
+          follow_joint_trajectory:
+            joints:
+              - $(arg right_arm_name)/finger_left_joint
+              - $(arg right_arm_name)/finger_right_joint
+          gains:
+            $(arg right_arm_name)/finger_left_joint: {p: 500.0, i: 100, d: 0, i_clamp: 1000.0}
+            $(arg right_arm_name)/finger_right_joint: {p: 500.0, i: 100, d: 0, i_clamp: 1000.0}
+
+            constraints:
+              goal_time: 10.0
+              $(arg right_arm_name)/finger_left_joint:
+                goal: 0.2
+              $(arg right_arm_name)/finger_right_joint:
+                goal: 0.2
+            action_monitor_rate: 30            # Override default
+            stop_trajectory_duration: 0        # Override default
+  </rosparam>
+
+  <group ns="$(arg uuv_name)">
+    <!-- load the controllers -->
+    <node name="controller_spawner_oberon7_grippers"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          output="screen"
+          ns="/$(arg uuv_name)"
+          args="/$(arg uuv_name)/$(arg left_arm_name)/gripper /$(arg uuv_name)/$(arg right_arm_name)/gripper"/>
+  </group>
+
+
+</launch>
